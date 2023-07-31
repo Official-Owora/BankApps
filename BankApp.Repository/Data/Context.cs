@@ -1,14 +1,9 @@
 ﻿using BankApps___Models.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BanksApps___Repository.Data
+namespace BankApp.Repository.Data
 {
-    public class Context : DbContext
+    public class Context :  DbContext
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {

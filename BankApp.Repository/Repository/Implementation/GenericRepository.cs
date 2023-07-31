@@ -1,18 +1,18 @@
-﻿using BanksApps___Repository.Data;
-using BanksApps___Repository.Repository.Abstraction;
+﻿using BankApp.Repository.Data;
+using BankApp.Repository.Repository.Abstraction;
 using Microsoft.EntityFrameworkCore;
 
-namespace BanksApps___Repository.Repository.Implementation
+namespace BankApp.Repository.Repository.Implementation
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly Context _context;
+        private readonly Context _repositoryContext;
         private readonly DbSet<T> _dbSet;
 
-        public GenericRepository(Context context)
+        public GenericRepository(Context repositoryContext)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            _repositoryContext = repositoryContext;
+            _dbSet = repositoryContext.Set<T>();
         }
         public async Task CreateAsync(T entity)
         {

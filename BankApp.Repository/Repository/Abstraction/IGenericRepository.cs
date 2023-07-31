@@ -1,4 +1,4 @@
-﻿namespace BanksApps___Repository.Repository.Abstraction
+﻿namespace BankApp.Repository.Repository.Abstraction
 {
     public interface IGenericRepository<T> where T : class
     {

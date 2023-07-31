@@ -1,21 +1,20 @@
-﻿using BankApps___Models.Model;
-using BanksApps___Repository.Data;
-using BanksApps___Repository.Repository.Abstraction;
+﻿using BankApp.Repository.Data;
+using BankApp.Repository.Repository.Abstraction;
+using BankApps___Models.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace BanksApps___Repository.Repository.Implementation
+namespace BankApp.Repository.Repository.Implementation
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly Context _context;
+        private readonly Context _repositoryContext;
         private readonly DbSet<User> _users;
 
-        public UserRepository(Context context) : base(context) 
+        public UserRepository(Context repositoryContext) : base(repositoryContext)
         {
-            _context = context;
-            _users = _context.Set<User>();
+            _repositoryContext = repositoryContext;
+            _users = _repositoryContext.Set<User>();
         }
-
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             IEnumerable<User> user = await _users.ToListAsync();

@@ -1,6 +1,6 @@
 ﻿using BankApps___Models.Model;
 
-namespace BanksApps___Repository.Repository.Abstraction
+namespace BankApp.Repository.Repository.Abstraction
 {
     public interface IAccountRepository : IGenericRepository<Account>
     {
