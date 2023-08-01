@@ -16,7 +16,7 @@ namespace BankApp.Core.Service.Implementation
         public async Task <string> CreateUserAsync(User user)
         {
             await _unitOfWork.UserRepository.CreateAsync(user);
-            _unitOfWork.Save();
+            await _unitOfWork.Save();
             return "User created Successfully";
         }
         public async Task<object> GetUserByEmailAsync(string email)

@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BankApp.Repository\BankApp.Repository.csproj" />
     <ProjectReference Include="..\BankApps - Models\BankApps - Models.csproj" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
 </Project>

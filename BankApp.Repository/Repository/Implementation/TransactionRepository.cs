@@ -20,9 +20,10 @@ namespace BankApp.Repository.Repository.Implementation
             _repositoryContext = repositoryContext;
             _transactions = _repositoryContext.Set<Transaction>();
         }
-        public async Task<IEnumerable<Transaction>> GetAllDailyTransactionByDateCreatedAsync(DateTime transactionDate)
+        public async Task<IEnumerable<Transaction>> GetAllDailyTransactionByDateCreatedAsync(DateOnly transactionDate)
         {
-            IEnumerable<Transaction> transactions = await _transactions.Where(x => x.TransactionDate == transactionDate).ToListAsync();
+            IEnumerable<Transaction> transactions = await _transactions.Where(x => DateOnly.Parse(x.CreatedDate.Date.ToString()) == transactionDate)
+                .ToListAsync();
             return transactions;
         }
 

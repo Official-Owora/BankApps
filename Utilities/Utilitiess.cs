@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Utilities
 {
-    public class Utility
+    public class Utilitiess
     {
         // Clean string to remove digit at the begining
         public static string RemoveDigitFromStart(string val)
@@ -104,6 +104,19 @@ namespace Utilities
                 }
             }
             return true;
+        }
+        // Method to generate account number
+        public static string GenerateUniqueId()
+        {
+            string acctNum = string.Empty;
+            Random rand = new Random();
+
+            for (int i = 0; i < 1; i++)
+            {
+                acctNum += rand.NextInt64();
+            }
+
+            return acctNum;
         }
         // validate email
         public static bool IsEmailValid(string inputEmail)
