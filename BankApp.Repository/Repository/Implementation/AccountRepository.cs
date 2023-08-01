@@ -21,9 +21,9 @@ namespace BankApp.Repository.Repository.Implementation
             return account;
         }
 
-        public async Task<Account> GetAccountByUserId(int id)
+        public async Task<Account> GetAccountByUserIdAsync(int UserId)
         {
-            Account account = await _accounts.FindAsync(id);
+            Account account = await _accounts.FindAsync(UserId);
             return account;
         }
 

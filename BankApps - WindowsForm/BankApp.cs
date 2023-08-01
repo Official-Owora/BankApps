@@ -1,8 +1,8 @@
 namespace BankApps___WindowsForm
 {
-    public partial class Form1 : Form
+    public partial class BankApp : Form
     {
-        public Form1()
+        public BankApp()
         {
             InitializeComponent();
         }
