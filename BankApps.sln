@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApps - Models", "BankApps - Models\BankApps - Models.csproj", "{E838F907-EB66-4A5F-95A1-7FAF57F0A69A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApps - Models", "BankApps - Models\BankApps - Models.csproj", "{E838F907-EB66-4A5F-95A1-7FAF57F0A69A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{E3CEF557-DB9A-48A2-94C3-C816F69B9D50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp.Repository", "BankApp.Repository\BankApp.Repository.csproj", "{BAC25117-81E1-4C40-AC8F-F0E489E27C01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApps - WindowsForm", "BankApps - WindowsForm\BankApps - WindowsForm.csproj", "{4DE3C55C-1F6E-4740-A844-CBA2FBF5EA46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp.Core", "BankApp.Core\BankApp.Core.csproj", "{71E2804E-DE46-4C50-ADEA-71D5C8E958B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApp.Repository", "BankApp.Repository\BankApp.Repository.csproj", "{BAC25117-81E1-4C40-AC8F-F0E489E27C01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp.WindowsForm", "BankApp.WindowsForm\BankApp.WindowsForm.csproj", "{EEB00B8C-64BA-4417-A84E-0D5C3BD329E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApp.Core", "BankApp.Core\BankApp.Core.csproj", "{71E2804E-DE46-4C50-ADEA-71D5C8E958B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitys", "Utilitys\Utilitys.csproj", "{19605508-E347-4E9A-A148-795EF1C7D109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +23,6 @@ Global
 		{E838F907-EB66-4A5F-95A1-7FAF57F0A69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E838F907-EB66-4A5F-95A1-7FAF57F0A69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E838F907-EB66-4A5F-95A1-7FAF57F0A69A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3CEF557-DB9A-48A2-94C3-C816F69B9D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3CEF557-DB9A-48A2-94C3-C816F69B9D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3CEF557-DB9A-48A2-94C3-C816F69B9D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3CEF557-DB9A-48A2-94C3-C816F69B9D50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4DE3C55C-1F6E-4740-A844-CBA2FBF5EA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DE3C55C-1F6E-4740-A844-CBA2FBF5EA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DE3C55C-1F6E-4740-A844-CBA2FBF5EA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DE3C55C-1F6E-4740-A844-CBA2FBF5EA46}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAC25117-81E1-4C40-AC8F-F0E489E27C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAC25117-81E1-4C40-AC8F-F0E489E27C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAC25117-81E1-4C40-AC8F-F0E489E27C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +31,14 @@ Global
 		{71E2804E-DE46-4C50-ADEA-71D5C8E958B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71E2804E-DE46-4C50-ADEA-71D5C8E958B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71E2804E-DE46-4C50-ADEA-71D5C8E958B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB00B8C-64BA-4417-A84E-0D5C3BD329E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB00B8C-64BA-4417-A84E-0D5C3BD329E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB00B8C-64BA-4417-A84E-0D5C3BD329E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB00B8C-64BA-4417-A84E-0D5C3BD329E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19605508-E347-4E9A-A148-795EF1C7D109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19605508-E347-4E9A-A148-795EF1C7D109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19605508-E347-4E9A-A148-795EF1C7D109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19605508-E347-4E9A-A148-795EF1C7D109}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

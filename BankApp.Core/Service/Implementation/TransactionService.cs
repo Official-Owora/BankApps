@@ -1,7 +1,7 @@
 ﻿using BankApp.Core.Service.Abstraction;
 using BankApp.Repository.UnitOfWork.Abstraction;
+using BankApps___Models.Enums;
 using BankApps___Models.Model;
-using Utilities;
 
 namespace BankApp.Core.Service.Implementation
 {
@@ -37,7 +37,7 @@ namespace BankApp.Core.Service.Implementation
             transaction.AccountNumber = accountNumber ;
             transaction.TransactionDate = DateTime.Now;
             transaction.TransactionAmount = amountToWithdraw;
-            transaction.TransactionType = "Debit";
+            transaction.TransactionType = TransactionType.Withdraw;
             transaction.TransactionDescription = description;
             _unitOfWork.TransactionRepository.CreateAsync(transaction);
             _unitOfWork.Save();
@@ -57,31 +57,52 @@ namespace BankApp.Core.Service.Implementation
             transaction.AccountNumber = accountNumber;
             transaction.TransactionDate = DateTime.Now;
             transaction.TransactionAmount = amountToDeposit;
-            transaction.TransactionType = "Deposit";
+            transaction.TransactionType = TransactionType.Deposit;
             transaction.TransactionDescription = description;
             _unitOfWork.TransactionRepository.CreateAsync (transaction);
             _unitOfWork.Save();
             return $"You have successfully deposited {amountToDeposit}";
         }
 
-        public async Task<string> TransferAsync(string accountNumber, decimal amountToTransfer, string description)
+        public async Task<string> TransferAsync(string accountNumber, decimal amountToTransfer, string description, string creditAccountNumber, string receiverName)
         {
-            Account account = await _accountService.GetAccountByAccountNumberAsync(accountNumber);
-            if (account == null)
+            Account senderAccount = await _accountService.GetAccountByAccountNumberAsync(accountNumber);
+            Account receiverAccount = await _accountService.GetAccountByAccountNumberAsync(creditAccountNumber); 
+            if (senderAccount.AccountBalance - amountToTransfer >= senderAccount.AccountBalance)
             {
+                senderAccount.AccountBalance -= amountToTransfer;
+                receiverAccount.AccountBalance += amountToTransfer;
                 return $"Account Number: {accountNumber} does not exist";
             }
-            
-            account.AccountBalance -= amountToTransfer;
-            Transaction transaction = new Transaction();
-            transaction.AccountNumber = accountNumber;
-            transaction.TransactionId = Utilitiess.GenerateUniqueId();
-            transaction.TransactionDate = DateTime.Now;
-            transaction.TransactionAmount = amountToTransfer;
-            transaction.TransactionType = "Transfer";
-            transaction.TransactionDescription = description;
-            _unitOfWork.TransactionRepository.CreateAsync(transaction);
-            _unitOfWork.Save();
+            else
+            {
+                return ("Insufficient fund");
+            }
+            Transaction senderTransaction = new()
+            {
+                AccountNumber = accountNumber,
+                TransactionDate = DateTime.Now,
+                TransactionAmount = amountToTransfer,
+                TransactionDescription = description,
+                TransactionType = TransactionType.Transfer,
+                TransactionStatus = Status.Successful,
+                ReceiverAccountNumber = creditAccountNumber,
+                ReceiverName = receiverName,
+            };
+            Transaction receiverTransaction = new()
+            {
+                AccountNumber = creditAccountNumber,
+                TransactionDate = DateTime.Now,
+                TransactionType= TransactionType.Transfer,
+                TransactionStatus = Status.Successful,
+                TransactionDescription= description,
+                TransactionAmount= amountToTransfer,
+
+            };
+            _unitOfWork.AccountRepository.Update(senderAccount);
+            await _unitOfWork.TransactionRepository.CreateAsync(senderTransaction);
+            await _unitOfWork.TransactionRepository.CreateAsync(receiverTransaction);
+            await _unitOfWork.Save();
             return $"You have successfully transfered {amountToTransfer}";
         }
 
@@ -95,11 +116,20 @@ namespace BankApp.Core.Service.Implementation
             IEnumerable<Transaction> alltransactions = await _unitOfWork.TransactionRepository.GetAllTransactionsByAccountNumberAsync(accountNumber);
             return alltransactions;
         }
-        public async Task<string> DeleteTransactionAsync(Transaction transaction)
+        public async Task<string> DeleteTransactionByIdAsync(Transaction transaction)
         {
-            _unitOfWork.TransactionRepository.Delete(transaction);
-           await _unitOfWork.Save();
+            _unitOfWork.TransactionRepository.DeleteByIdAsync(transaction);
+            await _unitOfWork.Save();
             return $"Transaction Successfully Deleted";
+            _unitOfWork.Dispose();
+            /* public async Task DeleteTransactionByIdAsync(int id)
+             {
+                 Transaction transaction = _unitOfWork.TransactionRepository.DeleteByIdAsync(id);
+                 Transaction transaction = await _unitOfWork.TransactionRepository.DeleteByIdAsync(transaction);
+                 _unitOfWork.TransactionRepository.DeleteByIdAsync(transaction);
+                 await _unitOfWork.Save();
+                 _unitOfWork.Dispose();
+             }*/
         }
     }
 }

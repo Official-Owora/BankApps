@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankApp.Repository.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230731171636_InitialMigration")]
+    [Migration("20230802170934_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -50,12 +50,16 @@ namespace BankApp.Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -79,7 +83,7 @@ namespace BankApp.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Amount")
+                    b.Property<decimal>("Balance")
                         .HasColumnType("money");
 
                     b.Property<string>("CreatedBy")
@@ -89,17 +93,36 @@ namespace BankApp.Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ReceiverAccountNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TransactionAmount")
+                        .HasColumnType("money");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TransactionDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -144,9 +167,13 @@ namespace BankApp.Repository.Migrations
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<byte[]>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -160,7 +187,7 @@ namespace BankApp.Repository.Migrations
             modelBuilder.Entity("BankApps___Models.Model.Account", b =>
                 {
                     b.HasOne("BankApps___Models.Model.User", null)
-                        .WithMany("UserAccounts")
+                        .WithMany("Accounts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -168,7 +195,7 @@ namespace BankApp.Repository.Migrations
 
             modelBuilder.Entity("BankApps___Models.Model.User", b =>
                 {
-                    b.Navigation("UserAccounts");
+                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }

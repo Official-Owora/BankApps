@@ -1,10 +1,9 @@
-﻿
-using BankApp.Repository.Data;
+﻿using BankApp.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace BankApps___WindowsForm.RepositoryContext
+namespace BankApp.WindowsForm.RepositoryContext
 {
     public class RepositoryContextFactory : IDesignTimeDbContextFactory<Context>
     {

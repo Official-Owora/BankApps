@@ -1,11 +1,10 @@
 ﻿using System.Net.Mail;
 using System.Text.RegularExpressions;
 
-namespace Utilities
+namespace Utilitys.Utilitiess
 {
-    public class Utilitiess
+    public static class Utilitiess
     {
-        // Clean string to remove digit at the begining
         public static string RemoveDigitFromStart(string val)
         {
             var str = val.Substring(0, 1).ToCharArray();
@@ -29,7 +28,7 @@ namespace Utilities
             return val;
         }
         // Validates received email
-        public static bool IsValidEmail(string email)
+        public static bool IsValidEmail(this string email)
         {
             try
             {
@@ -74,7 +73,7 @@ namespace Utilities
             return success;
         }
         // Generate hash
-        public static List<byte[]> GenerateHash(string password)
+        public static List<byte[]> GenerateHash(this string password)
         {
             byte[] passwordSalt, passwordHash;
             // convert password to hash value and generate salt
@@ -90,7 +89,7 @@ namespace Utilities
         }
 
         // compare password hash
-        public static bool CompareHash(byte[] passwordSalt, byte[] passwordHash, string password)
+        public static bool CompareHash(this string password, byte[] passwordSalt, byte[] passwordHash)
         {
             using (var hash = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {

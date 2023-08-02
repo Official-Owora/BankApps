@@ -22,7 +22,7 @@ namespace BankApp.Repository.Repository.Implementation
         {
             _dbSet.Update(entity);
         }
-        public void Delete(T entity)
+        public void DeleteByIdAsync(T entity)
         {
             _dbSet.Remove(entity);
         }
