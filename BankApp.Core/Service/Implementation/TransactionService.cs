@@ -121,15 +121,6 @@ namespace BankApp.Core.Service.Implementation
             _unitOfWork.TransactionRepository.DeleteByIdAsync(transaction);
             await _unitOfWork.SaveAsync();
             return $"Transaction Successfully Deleted";
-            _unitOfWork.Dispose();
-            /* public async Task DeleteTransactionByIdAsync(int id)
-             {
-                 Transaction transaction = _unitOfWork.TransactionRepository.DeleteByIdAsync(id);
-                 Transaction transaction = await _unitOfWork.TransactionRepository.DeleteByIdAsync(transaction);
-                 _unitOfWork.TransactionRepository.DeleteByIdAsync(transaction);
-                 await _unitOfWork.Save();
-                 _unitOfWork.Dispose();
-             }*/
         }
     }
 }
