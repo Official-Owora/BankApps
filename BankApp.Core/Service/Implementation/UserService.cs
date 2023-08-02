@@ -33,9 +33,6 @@ namespace BankApp.Core.Service.Implementation
             IEnumerable<User> users = await _unitOfWork.UserRepository.GetAllUsersAsync();
             return users;
         }
-        /*public async Task<bool> Login  (string email, string password)
-        {
-
-        }*/
+        
     }
 }
