@@ -15,7 +15,7 @@ namespace BankApp.Core.Service.Implementation
         public async Task<string> CreateAccountAsync(Account account)
         {
             await _unitOfWork.AccountRepository.CreateAsync(account);
-            await _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
             return "Account Successfully created";
         }
         public async Task<Account> GetAccountByAccountNumberAsync(string accountNumber)

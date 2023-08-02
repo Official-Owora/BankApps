@@ -19,13 +19,13 @@ namespace BankApp.Repository.UnitOfWork.Implementation
         public IAccountRepository AccountRepository => _accountRepository ??= new AccountRepository(_repositoryContext);
         public IUserRepository UserRepository => _userRepository ??= new UserRepository(_repositoryContext);
         public ITransactionRepository TransactionRepository => _transactionRepository ??= new TransactionRepository(_repositoryContext);
-        public async Task Save()
+        public async Task SaveAsync()
         {
             await _repositoryContext.SaveChangesAsync();
         }
         public void Dispose()
         {
-            _repositoryContext.Dispose();
+            _repositoryContext?.Dispose();
             GC.SuppressFinalize(this);
         }
     }

@@ -7,7 +7,7 @@ namespace BankApp.Repository.UnitOfWork.Abstraction
         IAccountRepository AccountRepository { get; }
         IUserRepository UserRepository { get; }
         ITransactionRepository TransactionRepository { get; }
-        Task Save();
+        Task SaveAsync();
         void Dispose();
     }
 }

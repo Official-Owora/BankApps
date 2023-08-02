@@ -20,7 +20,7 @@ namespace BankApp.Core.Service.Implementation
                 var passwordValue = password.GenerateHash();
                 User user = new User() { EmailAddress = email, Password = passwordValue[0], PasswordHash = passwordValue[1] };
                 _unitOfWork.UserRepository.CreateAsync(user);
-                await _unitOfWork.Save();
+                await _unitOfWork.SaveAsync();
                 return(true, string.Empty);
             }
             else

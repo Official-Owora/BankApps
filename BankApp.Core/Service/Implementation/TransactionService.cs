@@ -17,7 +17,7 @@ namespace BankApp.Core.Service.Implementation
         public async Task<string> CreateTransactionAsync(Transaction transaction)
         {
             await _unitOfWork.TransactionRepository.CreateAsync(transaction);
-            await _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
             return $"Transaction Successful";
         }
         public async Task<string> WithdrawAsync(string accountNumber, decimal amountToWithdraw, string description)
@@ -40,7 +40,7 @@ namespace BankApp.Core.Service.Implementation
             transaction.TransactionType = TransactionType.Withdraw;
             transaction.TransactionDescription = description;
             _unitOfWork.TransactionRepository.CreateAsync(transaction);
-            _unitOfWork.Save();
+            _unitOfWork.SaveAsync();
 
             return $"You have successfully withdrawn {amountToWithdraw}";
         }
@@ -60,7 +60,7 @@ namespace BankApp.Core.Service.Implementation
             transaction.TransactionType = TransactionType.Deposit;
             transaction.TransactionDescription = description;
             _unitOfWork.TransactionRepository.CreateAsync (transaction);
-            _unitOfWork.Save();
+            _unitOfWork.SaveAsync();
             return $"You have successfully deposited {amountToDeposit}";
         }
 
@@ -102,7 +102,7 @@ namespace BankApp.Core.Service.Implementation
             _unitOfWork.AccountRepository.Update(senderAccount);
             await _unitOfWork.TransactionRepository.CreateAsync(senderTransaction);
             await _unitOfWork.TransactionRepository.CreateAsync(receiverTransaction);
-            await _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
             return $"You have successfully transfered {amountToTransfer}";
         }
 
@@ -119,7 +119,7 @@ namespace BankApp.Core.Service.Implementation
         public async Task<string> DeleteTransactionByIdAsync(Transaction transaction)
         {
             _unitOfWork.TransactionRepository.DeleteByIdAsync(transaction);
-            await _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
             return $"Transaction Successfully Deleted";
             _unitOfWork.Dispose();
             /* public async Task DeleteTransactionByIdAsync(int id)

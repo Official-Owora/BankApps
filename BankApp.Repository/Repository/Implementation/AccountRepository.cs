@@ -7,13 +7,13 @@ namespace BankApp.Repository.Repository.Implementation
 {
     public class AccountRepository : GenericRepository<Account>, IAccountRepository
     {
-        private readonly Context _repositoryContext;
+        private readonly Context _context;
         private readonly DbSet<Account> _accounts;
 
         public AccountRepository(Context repositoryContext) : base(repositoryContext)
         {
-            _repositoryContext = repositoryContext;
-            _accounts = _repositoryContext.Set<Account>();
+            _context = repositoryContext;
+            _accounts = _context.Set<Account>();
         }
         public async Task<Account> GetAccountByAccountNumberAsync(string accountNumber)
         {
