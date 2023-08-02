@@ -58,9 +58,30 @@ namespace BankApp.WindowsForm
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
-
+            string email =textBox2.Text;
+            string password = textBox3.Text;
+            Label errorMessage = new Label();
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                errorMessage.Text = "Enter the right details";
+                return;
+            }
+            button2.Enabled = false;
+            var value = await _serviceManager.AuthenticationService.Login(email, password);
+            if (value.user == null)
+            {
+                errorMessage.Text = value.error;
+                errorMessage.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Login Successful");
+                _bindingTransactions.DataSource = await _serviceManager.AccountService.GetAccountByUserIdAsync(value.user.Id);
+               
+            }
+            button2.Enabled = true;
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
