@@ -10,22 +10,22 @@ namespace BankApp.Repository.UnitOfWork.Implementation
         private IAccountRepository _accountRepository;
         private IUserRepository _userRepository;
         private ITransactionRepository _transactionRepository;
-        private readonly Context _repositoryContext;
+        private readonly Context _context;
 
-        public UnitOfWork(Context repositoryContext)
+        public UnitOfWork(Context context)
         {
-            _repositoryContext = repositoryContext;
-        }
-        public IAccountRepository AccountRepository => _accountRepository ??= new AccountRepository(_repositoryContext);
-        public IUserRepository UserRepository => _userRepository ??= new UserRepository(_repositoryContext);
-        public ITransactionRepository TransactionRepository => _transactionRepository ??= new TransactionRepository(_repositoryContext);
+            _context = context;
+        } 
+        public IAccountRepository AccountRepository => _accountRepository ??= new AccountRepository(_context);
+        public IUserRepository UserRepository => _userRepository ??= new UserRepository(_context);
+        public ITransactionRepository TransactionRepository => _transactionRepository ??= new TransactionRepository(_context);
         public async Task SaveAsync()
         {
-            await _repositoryContext.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         public void Dispose()
         {
-            _repositoryContext?.Dispose();
+            _context?.Dispose();
             GC.SuppressFinalize(this);
         }
     }
