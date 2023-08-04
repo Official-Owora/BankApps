@@ -47,6 +47,7 @@ namespace BankApp.WindowsForm
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
                 errorMessage.Text = "Fill the form";
+                MessageBox.Show(errorMessage.Text);
                 return;
             }
             Register.Enabled = false;
@@ -56,6 +57,12 @@ namespace BankApp.WindowsForm
                 errorMessage.Text = actualDetails.error;
                 errorMessage.Visible = true;
             }
+            else
+            {
+                MessageBox.Show("Success");
+
+            }
+            Register.Enabled = true;
         }
 
         private async void button2_Click(object sender, EventArgs e)
